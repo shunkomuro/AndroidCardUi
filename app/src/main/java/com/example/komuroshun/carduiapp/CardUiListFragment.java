@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -108,6 +110,16 @@ public class CardUiListFragment extends ListFragment {
         View footer = layoutInflater.inflate(R.layout.list_header_footer, listView, false);
         listView.addHeaderView(header, null, false);
         listView.addFooterView(footer, null, false);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                Log.d("############","Items ");
+                flipCard(arg1);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -132,6 +144,22 @@ public class CardUiListFragment extends ListFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void flipCard(View rotationView)
+    {
+        // わかりやすく変数に入れているだけ
+        View rotationTargetLayout = rotationView;
+        View cardFace = rotationView;
+        View cardBack = rotationView;
+
+        FlipAnimation flipAnimation = new FlipAnimation(cardFace, cardBack);
+
+        if (cardFace.getVisibility() == View.GONE)
+        {
+            flipAnimation.reverse();
+        }
+        rotationTargetLayout.startAnimation(flipAnimation);
     }
 
     /**
