@@ -1,4 +1,4 @@
-package com.example.komuroshun.carduiapp;
+package com.example.komuroshun.androidcardui;
 
 import android.net.Uri;
 import android.os.Bundle;

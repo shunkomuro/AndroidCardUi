@@ -1,4 +1,4 @@
-package com.example.komuroshun.carduiapp;
+package com.example.komuroshun.androidcardui;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
